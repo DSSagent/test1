@@ -11,11 +11,11 @@
 	</parent>
 
 	<groupId>edu.rit.swen262</groupId>
-	<artifactId>TEAM-XX-DESIGN-PROJECT</artifactId>
+	<artifactId>COMIX-2-DESIGN-PROJECT</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>REPLACE-ME-WITH-PROJECT-NAME</name>
+	<name>COMIX</name>
 	<description>
-    YOUR PROJECT DESCRIPTION HERE
+    SWEN-262 design project.
   </description>
 
 	<properties>

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"edu.rit.swen262", "comix"})
 public class MyApplication {
 
 	public static void main(String[] args) {
@@ -27,6 +27,6 @@ class SampleCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("PUT TEST CODE HERE");
+		;
 	}
 }
