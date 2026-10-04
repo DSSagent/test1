@@ -25,6 +25,14 @@ public class Comix {
         return publisher;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getIssueNumber() {
+        return issueNumber;
+    }
+
     public String getSeries() {
         return series;
     }
