@@ -2,8 +2,9 @@ package comix.search;
 import comix.model.*;
 
 import java.util.Collection;
+import java.util.List;
 
 
 public interface comixSearch {
-    Collection<Comix> doSearch(String term, Collection<Comix> comix);
+    List<Comix> doSearch(String term, Collection<Comix> comix);
 }
