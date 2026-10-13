@@ -1,28 +1,39 @@
 package comix.collection;
-import comix.model.*;
-import java.util.HashMap;
+
+import comix.model.Comix;
+import comix.search.comixSearch;
+import comix.search.searchBySeries;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-import comix.search.*;
-
-public class masterDatabase {
-    private HashMap<String,Comix> comix;
-    private comixSearch comixSearcher; 
-
-
-
-    public masterDatabase(){
-        this.comix = new HashMap<>();
+public final class masterDatabase {
+    private final Map<String, Comix> comics;
+    private comixSearch searcher = new searchBySeries();
+    public masterDatabase() {
+        this(List.of());
     }
-    public HashMap<String, Comix> getComix() {
-        return comix;
+    public masterDatabase(Collection<Comix> records) {
+        Map<String, Comix> map = new LinkedHashMap<>();
+        int index = 1;
+        for (Comix comic : records) {
+            map.put("catalog-" + index++, comic);
+        }
+        comics = Collections.unmodifiableMap(map);
     }
-
-    public void setComixSearcher(comixSearch comixSearcher) {
-        this.comixSearcher = comixSearcher;
+    public Map<String, Comix> getComix() {
+        return comics;
     }
-
-    public List<Comix> doSearch(String term){
-        return this.comixSearcher.doSearch(term, this.comix.values());
+    public void setComixSearcher(comixSearch searcher) {
+        this.searcher = Objects.requireNonNull(searcher);
+    }
+    public List<Comix> doSearch(String term) {
+        return doSearch(term, true);
+    }
+    public List<Comix> doSearch(String term, boolean exact) {
+        return searcher.doSearch(term, comics.values(), exact);
     }
 }

@@ -1,25 +1,19 @@
 package comix.search;
 
-import java.time.LocalDate;
+import comix.model.Comix;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import comix.model.Comix;
-
-public class searchByPublicationDate implements comixSearch{
+public class searchByPublicationDate implements comixSearch {
     @Override
-    public List<Comix> doSearch(String term, Collection<Comix> comix) {
+    public List<Comix> doSearch(String term, Collection<Comix> comics, boolean exact) {
         List<Comix> results = new ArrayList<>();
-
-        LocalDate searchDate = LocalDate.parse(term);
-
-        for (Comix comic : comix) {
-            if (comic.getPublicationDate().equals(searchDate)) {
+        for (Comix comic : comics) {
+            if (SearchSupport.matches(comic.getPublicationDate(), term, exact)) {
                 results.add(comic);
             }
+        }
+        return results;
     }
-
-    return results;
-}
 }
