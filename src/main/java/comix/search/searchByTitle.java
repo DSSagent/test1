@@ -1,23 +1,19 @@
 package comix.search;
 
+import comix.model.Comix;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import comix.model.Comix;
-
-public class searchByTitle implements comixSearch{
-    //NTS implement partial search by regex
+public class searchByTitle implements comixSearch {
     @Override
-    public List<Comix> doSearch(String term, Collection<Comix> comix) {
+    public List<Comix> doSearch(String term, Collection<Comix> comics, boolean exact) {
         List<Comix> results = new ArrayList<>();
-
-        for (Comix comic : comix) {
-            if (comic.getTitle().equalsIgnoreCase(term)) {
+        for (Comix comic : comics) {
+            if (SearchSupport.matches(comic.getTitle(), term, exact)) {
                 results.add(comic);
             }
         }
         return results;
     }
-    
 }
